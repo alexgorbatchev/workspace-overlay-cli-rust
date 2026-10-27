@@ -1,0 +1,37 @@
+[package]
+name = "workspace-overlay-cli"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+description = "Serve layered agent files over native Linux projects and Git worktrees"
+license = "MIT"
+publish = false
+
+[[bin]]
+name = "workspace-overlay"
+path = "src/main.rs"
+
+[[bin]]
+name = "workspace-overlay-fixture"
+path = "src/fixture_main.rs"
+
+[dependencies]
+workspace-overlay = { path = "crates/workspace-overlay" }
+cli-command-kit = { path = "../cli-command-kit" }
+signal-hook = "0.4.5"
+comfy-table = "7.2.2"
+thiserror = "2.0.18"
+rustix = { version = "1.1.5", features = ["event"] }
+env_logger = { version = "0.11.11", default-features = false }
+log = "0.4.34"
+
+[dev-dependencies]
+tempfile = "3.27.0"
+libc = "0.2.190"
+
+
+[workspace]
+members = ["crates/workspace-overlay"]
+default-members = [".","crates/workspace-overlay"]
+resolver = "3"
+exclude = ["third_party/fuser"]

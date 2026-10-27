@@ -1,0 +1,34 @@
+version = 1
+
+[defaults]
+collision = "concat"
+write = "most-specific"
+
+[[markers]]
+glob = "*.md"
+start = "<!-- BEGIN WORKSPACE-OVERLAY: {name} ({path}) -->"
+end   = "<!-- END WORKSPACE-OVERLAY: {name} ({path}) -->"
+
+[projects.alpha]
+path = "alpha"
+
+[projects.beta]
+path = "beta"
+
+[[overlays]]
+name = "workspace"
+source = ".ai/workspace"
+projects = ["*"]
+glob = "**/*"
+
+[[overlays]]
+name = "alpha"
+source = ".ai/alpha"
+projects = ["alpha"]
+glob = "**/*"
+
+[[overlays]]
+name = "beta"
+source = ".ai/beta"
+projects = ["beta"]
+glob = "**/*"
